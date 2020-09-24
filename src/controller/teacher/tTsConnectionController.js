@@ -5,7 +5,7 @@
  * @param req
  * @param res
  */
-export const userData = async (req, res) => {
+export const tTsConnection = async (req, res) => {
 	
 	res.status(200)
 		.json({

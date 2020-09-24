@@ -1,20 +1,17 @@
 /* eslint-disable no-undef */
-import cors from 'cors';
-import express from 'express';
-import bodyparser from 'body-parser';
-import passport from 'passport';
-import dotenv from 'dotenv';
-
-dotenv.config({silent: process.env.NODE_ENV === 'production'});
-import _ from 'lodash';
-import path from 'path';
-import morgan from 'morgan';
-import cookieParser from 'cookie-parser';
-import http from 'http';
-import debug from 'debug';
+import cors from "cors";
+import express from "express";
+import bodyparser from "body-parser";
+import passport from "passport";
+import _ from "lodash";
+import path from "path";
+import morgan from "morgan";
+import cookieParser from "cookie-parser";
+import http from "http";
+import debug from "debug";
 
 /** For router */
-import rootRouter from './route/rootRouter.js';
+import rootRouter from "./route/rootRouter.js";
 
 /** For socket */
 //import {onConnection, onUserReceiverMessage} from "./controllers/auth/socket/socketController.js";
@@ -33,7 +30,7 @@ app.use(passport.initialize());
  * Middlewares
  */
 const globalMiddlewares = [
-	morgan('dev'),
+	morgan("dev"),
 	express.json(),
 	express.urlencoded({extended: false}),
 	cookieParser(),
@@ -49,16 +46,14 @@ _.each(globalMiddlewares, (middleware) => {
 	app.use(middleware);
 });
 
-app.use('/public' ,express.static(path.join(__dirname, '../public')));	//TODO 改那些path
+app.use("/public" ,express.static(path.join(__dirname, "../public")));	//TODO 改那些path
 
 /**
  * Routers
  */
-app.disable('etag');	//禁用緩存，不會回304
+app.disable("etag");	//禁用緩存，不會回304
 
-app.use('/api', rootRouter);
-
-app.use('/swagger', express.static('public/dist')); //API 介面
+app.use("/api/v1/", rootRouter);
 
 /* * * Server start * * */
 
@@ -81,11 +76,11 @@ function normalizePort(val) {
 /**
  * Get port from environment and store in Express.
  */
-const port = normalizePort(process.env.APP_PORT || '3000');
-app.set('port', port);
+const port = normalizePort(process.env.APP_PORT || "3000");
+app.set("port", port);
 
 /** dev */
-const dd = debug('monolithic:server');
+const dd = debug("monolithic:server");
 const server = http.createServer(app);
 server.listen(port);
 
@@ -93,10 +88,10 @@ server.listen(port);
 /**
  * Event listener for HTTP server "listening" event.
  */
-server.on('listening', () => {
+server.on("listening", () => {
 	const addr = server.address();
 	const bind =
-		typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
+		typeof addr === "string" ? `pipe ${addr}` : `port ${addr.port}`;
 	dd(`Listening on ${bind}`);
 	console.log(`✅  Node server is listen on ${bind}`); // eslint-disable-line no-console
 });

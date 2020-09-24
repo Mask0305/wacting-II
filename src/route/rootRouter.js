@@ -1,9 +1,13 @@
-import express from 'express';
-import { userData } from '../controller/userController';
-
+import express from "express";
+import student from "../route/studentRouter";
+import teacher from "../route/teacherRouter";
 
 const router = express.Router();
 
-router.use('/',userData);
+/** 學生 **/
+router.use("/student",student);
+
+/** 老師 **/
+router.use("/teacher",teacher);
 
 export default router;
