@@ -1,7 +1,7 @@
 import express from "express";
 import { recordLsit } from "../controller/student/recordListController";
-import { teacherLogin } from "../controller/teacher/loginController";
-import { openExam } from "../controller/teacher/openExamController";
+import { teacherLogin } from "../controller/teacher/teacherLoginController";
+import { openExam } from "../controller/teacher/examController";
 import { extendExam } from "../controller/teacher/extendExamController";
 import { closeExam } from "../controller/teacher/closeExamController";
 import { cheatpic } from "../controller/teacher/cheatpicController";

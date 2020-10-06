@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { showup } from "../../service/logShowup";
+
 
 /**
  * Display list of all examples.
@@ -42,7 +42,7 @@ export const recordLsit = async (req, res) => {
 				.json({error:error,message:message});
 			console.log("Token Error message : "+err);
 		} else {
-			showup("Student_RecoedList",req.connection.remoteAddress);
+			
 			res.status(200)
 				.json(result);
 		}

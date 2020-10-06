@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { showup } from "../../service/logShowup";
+
 
 
 /**
@@ -21,7 +21,6 @@ export const studentLogin = async (req, res) => {
 		};
 		const userLoginToken = jwt.sign({payload,exp:Math.floor(Date.now()/100)+(60*15)},"student_key");
   
-		showup("StudentLogin",req.connection.remoteAddress);
 		res.status(200)
 			.json({
 				"token":userLoginToken,

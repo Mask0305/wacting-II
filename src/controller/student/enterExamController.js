@@ -1,6 +1,4 @@
-import { stuList } from "../../service/studentLsit";
 import jwt from "jsonwebtoken";
-import { showup } from "../../service/logShowup";
 
 let id;
 let startTime ;
@@ -33,7 +31,6 @@ export const enterExam = async (req, res) => {
 			let teacherIP = req.body.teacherIP;
 			if(payload.studentName !="" || payload.studentId !="" || payload.studentIP !="" || teacherIP !=""){
                 
-				showup("EnterExam",req.connection.remoteAddress);
 				//console.log('Token:\n'+clientToken);
 				let result={
 					"examID":id,                       
@@ -76,3 +73,5 @@ export const enterExam = async (req, res) => {
 		}
 	});
 };
+
+

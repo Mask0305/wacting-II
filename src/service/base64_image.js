@@ -17,6 +17,7 @@ export function imgtobase(img){
 }
 
 export function basetoimg(base64str,stid,time,i){
+	// eslint-disable-next-line no-undef
 	var path = __dirname + "/cheatpic/";                                 //轉回圖片後存放位置
 	var optionalObj  = {"fileName":time+"_"+stid+ "_" + i,"type":"jpg"};    //fileName->命名圖片,type->格式
 	base64toimg(base64str,path,optionalObj);
