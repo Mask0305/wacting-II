@@ -20,7 +20,7 @@ request('http://google.com',function(err,res,body){
 
 export const post_cheatpic = (data) => {
 	request({
-		url:"http://127.0.0.1:5000/api/v1/teacher/cheatpic",
+		url:"http://127.0.0.1:5000/watching/api/v1/teacher/cheatpic",	//把位址換成教師端
 		method:"POST",
 		json:true,
 		body:data
