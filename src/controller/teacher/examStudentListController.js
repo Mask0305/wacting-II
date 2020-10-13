@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-var studentList = new Array();
+let studentList = new Array();
 export const stuList = (studentIP,studentId,studentName)=>{    //接取學生資訊
 	studentList.push({
 		"studentIP":studentIP,

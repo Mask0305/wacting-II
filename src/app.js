@@ -53,7 +53,7 @@ app.use("/public" ,express.static(path.join(__dirname, "../public")));	//TODO �
  */
 app.disable("etag");	//禁用緩存，不會回304
 
-app.use("/api/v1/", rootRouter);
+app.use("/watching/api/v1/", rootRouter);
 
 /* * * Server start * * */
 
@@ -82,7 +82,7 @@ app.set("port", port);
 /** dev */
 const dd = debug("monolithic:server");
 const server = http.createServer(app);
-server.listen(port);
+server.listen(port,"0.0.0.0");
 
 
 /**

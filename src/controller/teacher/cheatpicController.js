@@ -1,4 +1,4 @@
-import { stuLog } from "../../service/examLog";
+import { stuLog } from "../../controller/teacher/examLogController";
 import {basetoimg} from "../../service/base64_image";
 import {jwt} from "jsonwebtoken";
 

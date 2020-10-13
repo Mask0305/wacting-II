@@ -11,15 +11,16 @@ export const studentLogin = async (req, res) => {
 	let studentName = req.body.studentName;
 	let studentId = req.body.studentId;
 
-	if(studentName !="" || studentId !=""){
+	if(studentName !="" && studentId !=""){
 
 		/* jwt */
-		const payload={
+		const student={
 			studentName : req.body.studentName,
 			studentId : req.body.studentId,
 			studentIP : req.connection.remoteAddress
 		};
-		const userLoginToken = jwt.sign({payload,exp:Math.floor(Date.now()/100)+(60*15)},"student_key");
+		
+		const userLoginToken = jwt.sign({student,exp:Math.floor(Date.now()/100)+(60*15)},"student_key");
   
 		res.status(200)
 			.json({

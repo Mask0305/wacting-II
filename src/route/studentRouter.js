@@ -1,7 +1,6 @@
 import express from "express";
-import { enterExam } from "../controller/student/enterExamController";
+import { enterExam } from "../controller/teacher/examController";
 import { studentLogin } from "../controller/student/loginController";
-import { recordLsit } from "../controller/student/recordListController";
 import { sTtConnection } from "../controller/student/sTtConnectionController";
 
 const router = express.Router();
@@ -10,10 +9,7 @@ const router = express.Router();
 router.post("/studentLogin",studentLogin);
 
 /** 學生進入考場 **/
-router.post("/enterExam",enterExam);
-
-/** 學生查看考試紀錄 **/
-router.get("/recordList",recordLsit);
+router.post("/enterExam",enterExam);        //連線至教師機進入考場，取得考場資訊
 
 /** 學生端與教師端確認連現狀控 **/
 router.get("/sTtConnection",sTtConnection);
