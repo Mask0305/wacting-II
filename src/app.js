@@ -46,9 +46,7 @@ _.each(globalMiddlewares, (middleware) => {
 	app.use(middleware);
 });
 
-app.use("/" ,express.static(path.join(__dirname, "../dist/watching/index.html")));	//TODO 改那些path
-
-
+app.use("/index" ,express.static(path.join(__dirname, "../dist/watching/index.html")));	//TODO 改那些path
 /**
  * Routers
  */
