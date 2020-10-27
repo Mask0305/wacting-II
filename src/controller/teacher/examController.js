@@ -9,12 +9,14 @@ let DetailExamID;
 let DetailExamStartTime ;
 let DetailExamEndTime ;
 let DetailExamCount ;
+let DetailExamName;
 
-let examdetal = (ExamID,ExamStartTime,ExamEndTime,ExamCount) => {
+let examdetal = (ExamID,ExamName,ExamStartTime,ExamEndTime,ExamCount) => {
 	DetailExamID = ExamID;
+	DetailExamName = ExamName;
 	DetailExamStartTime = ExamStartTime;
 	DetailExamEndTime = ExamEndTime;
-	DetailExamCount = ExamCount ;
+	DetailExamCount = ExamCount;
 };
 
 /**
@@ -116,10 +118,10 @@ export const enterExam = async (req, res) => {
 							.json({"message":"考試已結束，請向任課老師確認時間"});
 					}else{
 						let result={
-							"examID":DetailExamID,                       
+							"examID":DetailExamID,  
+							"examName":DetailExamName,                     
 							"examStartTime":DetailExamStartTime,     
 							"examEndTime":DetailExamEndTime,   
-							"examCount":DetailExamCount,
 							"message":"成功進入考場"
 						};
 						stuList(req.connection.remoteAddress,payload.student.studentId,payload.student.studentName); //將學生資訊儲存下來
