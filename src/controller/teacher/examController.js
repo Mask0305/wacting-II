@@ -119,6 +119,7 @@ export const enterExam = async (req, res) => {
 							"examID":DetailExamID,                       
 							"examStartTime":DetailExamStartTime,     
 							"examEndTime":DetailExamEndTime,   
+							"examCount":DetailExamCount,
 							"message":"成功進入考場"
 						};
 						stuList(req.connection.remoteAddress,payload.student.studentId,payload.student.studentName); //將學生資訊儲存下來
