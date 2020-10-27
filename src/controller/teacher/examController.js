@@ -47,7 +47,8 @@ export const openExam = async (req, res) => {
 
 				examdetal(examID,examStartTime,examEndTime);		// 將考試資料存起來，給學生端拿
 				let message={
-					"examID":DetailExamID,                      
+					"examID":examID, 
+					"examName":examName,                     
 					"examStartTime":DetailExamStartTime,     
 					"examEndTime":DetailExamEndTime,
 					"examCount":DetailExamCount,
