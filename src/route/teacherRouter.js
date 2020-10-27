@@ -1,6 +1,6 @@
 import express from "express";
 import { teacherLogin } from "../controller/teacher/teacherLoginController";
-import { openExam } from "../controller/teacher/examController";
+import { isExamFinish, openExam } from "../controller/teacher/examController";
 import { extendExam } from "../controller/teacher/examController";
 import { closeExam } from "../controller/teacher/examController";
 import { cheatpic } from "../controller/teacher/cheatpicController";
@@ -33,5 +33,7 @@ router.get("/examStudentList",examStudentList);
 /** 教師取得作弊Log **/
 router.get("/examLog",examLog);
 
+/** 教師確認考試時間是否結束 **/
+router.get("/isExamFinish",isExamFinish);
 
 export default router;

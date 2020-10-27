@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken";
 import { stuList } from "../../controller/teacher/examStudentListController";
 import ping from "ping";
+import { isEndTime } from "../../service/isEndTime";
+import { checkTime } from "../../service/checkTime";
 
 
 let DetailExamID;
@@ -49,9 +51,9 @@ export const openExam = async (req, res) => {
 				let message={
 					"examID":examID, 
 					"examName":examName,                     
-					"examStartTime":DetailExamStartTime,     
-					"examEndTime":DetailExamEndTime,
-					"examCount":DetailExamCount,
+					"examStartTime":examStartTime,     
+					"examEndTime":examEndTime,
+					"examCount":examCount,
 					"message":"成功開啟考場"
 				};
 			
@@ -98,20 +100,18 @@ export const enterExam = async (req, res) => {
 			if(payload.studentName !="" && payload.studentId !="" && payload.studentIP !="" && teacherIP !=""){
                 
 				//console.log('Token:\n'+clientToken);
-				
-				
-				
+			
 				if(DetailExamID===undefined){
 					res.status(400)
 						.json({"message":"尚無考場資料，請稍後再試"});
 				}else if(DetailExamID!=undefined){
 					var time = new Date();
-					var now = time.getFullYear()+"-"+(time.getMonth()+1)+"-"+time.getDate()+" "+time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+					var now = time.getHours()+":"+time.getMinutes(); // 12:00
 					
-					if(checkTime(now)==="early"){
+					if(checkTime(now,DetailExamEndTime,DetailExamStartTime)==="early"){
 						res.status(400)
 							.json({"message":"考試還未開始，請稍候再試"});
-					}else if(checkTime(now)==="late"){
+					}else if(checkTime(now,DetailExamEndTime,DetailExamStartTime)==="late"){
 						res.status(400)
 							.json({"message":"考試已結束，請向任課老師確認時間"});
 					}else{
@@ -131,7 +131,11 @@ export const enterExam = async (req, res) => {
 	});
 };
 
-
+/**
+ * 教師更改考試時間
+ * @param req
+ * @param res
+ */
 export const extendExam = async (req, res) => {
 	
 	let examId = req.body.examId;
@@ -155,8 +159,8 @@ export const extendExam = async (req, res) => {
 					.json({error:error,message:message});
 			}else{
 
-				var old_end = DetailExamEndTime.substr(11,2) + DetailExamEndTime.substr(14,2);                    //取出時間部分轉化為數字進行比較
-				var new_end = examEndTime.substr(11,2) + examEndTime.substr(14,2);
+				var old_end = DetailExamEndTime.substr(0,2) + DetailExamEndTime.substr(3,2);                    //取出時間部分轉化為數字進行比較
+				var new_end = examEndTime.substr(0,2) + examEndTime.substr(3,2);
 				console.log(old_end+"/"+new_end);
 				if(old_end >= new_end){ 
 					let error = "examTimeError";
@@ -183,6 +187,11 @@ export const extendExam = async (req, res) => {
 };
 
 
+/**
+ * 教師關閉連線
+ * @param req
+ * @param res
+ */
 export const closeExam = function(req,res){
 	let examId = req.body.examId;
 	let examEndTime = req.body.examEndTime;
@@ -203,8 +212,8 @@ export const closeExam = function(req,res){
 					.json({error:error,message:message});
 			}else{
 
-				let old_end = DetailExamEndTime.substr(11,2)+DetailExamEndTime.substr(14,2);                    //取出時間部分轉化為數字進行比較
-				let new_end = examEndTime.substr(11,2) + examEndTime.substr(14,2);
+				let old_end = DetailExamEndTime.substr(0,2)+DetailExamEndTime.substr(3,2);                    //取出時間部分轉化為數字進行比較
+				let new_end = examEndTime.substr(0,2) + examEndTime.substr(3,2);
 				console.log(old_end+"/"+new_end);
 				if(old_end < new_end){ 
 					let error = "examTimeError";
@@ -231,7 +240,7 @@ export const closeExam = function(req,res){
 
 
 /**
- * Display list of all examples.
+ * 教師端與學生端測試連線
  * @param req
  * @param res
  */
@@ -277,17 +286,26 @@ export const tTsConnection = async (req, res) => {
 
 };
 
-let checkTime = (now) =>{
-	let endTime = DetailExamEndTime.substr(11,2)+DetailExamEndTime.substr(14,2);                    //取出時間部分轉化為數字進行比較
-	let startTime = DetailExamStartTime.substr(11,2)+DetailExamStartTime.substr(14,2);                    
-	let nowTime = now.substr(11,2) + now.substr(14,2);
-	console.log(now);
-	console.log(nowTime);
-	if(nowTime < startTime){ 
-		return "early";
-	}else if(nowTime>endTime){
-		return "late";
+/**
+ * 檢查考試時間是否已結束
+ * @param req
+ * @param res
+ */
+export const isExamFinish = async (req, res) => {
+	var time = new Date();
+	var now = time.getHours()+":"+time.getMinutes(); // 12:00
+	
+	if(isEndTime(now,DetailExamEndTime)){
+		return res.json({
+			"message":true
+		});
 	}else{
-		return "";
+		return res.json({
+			"message":false
+		});
 	}
+	// true -> 結束
+	// false -> 考試中
 };
+
+

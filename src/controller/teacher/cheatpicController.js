@@ -11,10 +11,10 @@ export const cheatpic = async (req, res) => {
 
 	//let basecode = req.body.basecode;
 	let studentName = req.body.studentName;
-	let studentId = req.body.studentId;
-	let time = req.body.cheatTime;
-	let probability = req.body.cheatProbability;
-	let cheatimg = req.body.cheatImages;   //三條base64碼
+	let studentId = req.body.studentId;				//學號
+	let time = req.body.cheatTime;					//作弊時間
+	let probability = req.body.cheatProbability;	//作弊可能性
+	let cheatimg = req.body.cheatImages;   			//三條base64碼 (圖片)
 	let teacherToken = req.headers.authorization;           //從header取token
 	stuLog(studentId,studentName,time,probability);         //將Log資訊儲存下來
 	var teacherCheatData = {
