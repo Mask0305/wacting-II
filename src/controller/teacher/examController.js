@@ -49,7 +49,7 @@ export const openExam = async (req, res) => {
 			if(examName!=undefined && examStartTime!=undefined && examEndTime!=undefined && examCount!=undefined && teacherToken != undefined){
 
 
-				examdetal(examID,examStartTime,examEndTime);		// 將考試資料存起來，給學生端拿
+				examdetal(examID,examName,examStartTime,examEndTime,examCount);		// 將考試資料存起來，給學生端拿
 				let message={
 					"examID":examID, 
 					"examName":examName,                     
