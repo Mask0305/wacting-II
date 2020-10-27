@@ -1,5 +1,5 @@
 import ping from "ping";
-import { jwt } from "jsonwebtoken";
+import  jwt from "jsonwebtoken";
 
 /**
  * Display list of all examples.

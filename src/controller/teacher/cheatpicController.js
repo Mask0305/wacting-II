@@ -10,7 +10,7 @@ import {jwt} from "jsonwebtoken";
 export const cheatpic = async (req, res) => {
 
 	//let basecode = req.body.basecode;
-	let studentName = req.body.studentName;
+	let studentName = req.body.studentName;			//姓名
 	let studentId = req.body.studentId;				//學號
 	let time = req.body.cheatTime;					//作弊時間
 	let probability = req.body.cheatProbability;	//作弊可能性
