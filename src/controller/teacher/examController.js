@@ -296,16 +296,26 @@ export const tTsConnection = async (req, res) => {
  */
 export const isExamFinish = async (req, res) => {
 	var time = new Date();
-	var now = time.getHours()+":"+time.getMinutes(); // 12:00
-	
-	if(isEndTime(now,DetailExamEndTime)){
-		return res.json({
-			"message":true
-		});
+	var now = time.getHours()+":"+time.getMinutes(); // example -> 12:00
+	if(DetailExamEndTime === undefined){
+		return res.status(404)
+			.json({
+				"message":"尚未開啟考試，請稍後再試"
+			});
+	}
+
+	var result = isEndTime(now,DetailExamEndTime);
+
+	if(result ===  true){
+		return res.status(200)
+			.json({
+				"message":true
+			});
 	}else{
-		return res.json({
-			"message":false
-		});
+		return res.status(200)
+			.json({
+				"message":false
+			});
 	}
 	// true -> 結束
 	// false -> 考試中

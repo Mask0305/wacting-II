@@ -3,7 +3,7 @@ import { teacherLogin } from "../controller/teacher/teacherLoginController";
 import { isExamFinish, openExam } from "../controller/teacher/examController";
 import { extendExam } from "../controller/teacher/examController";
 import { closeExam } from "../controller/teacher/examController";
-import { cheatpic } from "../controller/teacher/cheatpicController";
+import { cheatPic } from "../controller/teacher/cheatpicController";
 import { tTsConnection } from "../controller/teacher/examController";
 import { examStudentList } from "../controller/teacher/examStudentListController";
 import { examLog } from "../controller/teacher/examLogController";
@@ -22,7 +22,7 @@ router.post("/extendExam",extendExam);
 router.post("/closeExam",closeExam);
 
 /** 老師接收作弊圖片 **/
-router.post("/cheatpic",cheatpic);
+router.post("/cheatPic",cheatPic);
 
 /** 教師端與學生端確認連線狀況 **/
 router.get("/tTsConnection",tTsConnection);

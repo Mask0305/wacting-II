@@ -9,11 +9,11 @@ export const stuLog = (studentId,studentName,time,probability) => {
 		"studentId":studentId,
 		"studentName":studentName,
 		"time":time,
-		"probability":probability,
+		"probability":probability.substr(1,1)+"%",
 		"cheatImages": [
-			studentId+"_"+time+"_"+1+".jpg",
-			studentId+"_"+time+"_"+2+".jpg",
-			studentId+"_"+time+"_"+3+".jpg",
+			process.cwd()+"/cheatPic/"+studentId+"_"+time+"_"+1+".jpg",
+			process.cwd()+"/cheatPic/"+studentId+"_"+time+"_"+2+".jpg",
+			process.cwd()+"/cheatPic/"+studentId+"_"+time+"_"+3+".jpg",
 		] 
 	});
 };

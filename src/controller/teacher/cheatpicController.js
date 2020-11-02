@@ -1,15 +1,16 @@
 import { stuLog } from "../../controller/teacher/examLogController";
 import {basetoimg} from "../../service/base64_image";
-import {jwt} from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 /**
  * Display list of all examples.
  * @param req
  * @param res
  */
-export const cheatpic = async (req, res) => {
+export const cheatPic = async (req, res) => {
 
 	//let basecode = req.body.basecode;
+
 	let studentName = req.body.studentName;			//姓名
 	let studentId = req.body.studentId;				//學號
 	let time = req.body.cheatTime;					//作弊時間
