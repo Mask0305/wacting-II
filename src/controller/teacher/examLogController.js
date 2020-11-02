@@ -5,15 +5,18 @@ import jwt from "jsonwebtoken";
 
 var studentLog = new Array();
 export const stuLog = (studentId,studentName,time,probability) => {
+	let ResProbability = probability.toString().substr(2,1);
+	console.log(ResProbability);
+	const url="http://192.168.52.126:3000/watching/cheatPic/";
 	studentLog.unshift({        //最新的會在第一筆
 		"studentId":studentId,
 		"studentName":studentName,
 		"time":time,
-		"probability":probability.substr(1,1)+"%",
+		"probability":ResProbability+"0%",
 		"cheatImages": [
-			process.cwd()+"/cheatPic/"+studentId+"_"+time+"_"+1+".jpg",
-			process.cwd()+"/cheatPic/"+studentId+"_"+time+"_"+2+".jpg",
-			process.cwd()+"/cheatPic/"+studentId+"_"+time+"_"+3+".jpg",
+			url+time+"_"+studentId+"_"+0+".jpg",
+			url+time+"_"+studentId+"_"+1+".jpg",
+			url+time+"_"+studentId+"_"+2+".jpg",
 		] 
 	});
 };
