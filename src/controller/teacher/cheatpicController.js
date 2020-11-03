@@ -29,7 +29,6 @@ export const cheatPic = async (req, res) => {
 			studentId+"_"+time+"_"+3+".jpg",
 		] 
 	};
-	console.log(teacherCheatData);
 	jwt.verify(teacherToken,"student_key",(err,/*payload*/) => {      //jwt解密
 		if(studentName!=""&&studentId!=""&&time!=""&&probability!=""&&cheatimg!=""){
 			for(var i=0;i<=2;i++){

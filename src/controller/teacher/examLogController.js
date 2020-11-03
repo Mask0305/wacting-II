@@ -1,13 +1,25 @@
 import jwt from "jsonwebtoken";
+import os from "os";
 
+const getLocalIP = () => {
+	const interfaces = os.networkInterfaces();
 
-
+	for(var devName in interfaces){  
+		var iface = interfaces[devName];  
+		for(var i=0;i<iface.length;i++){  
+			var alias = iface[i];  
+			if(alias.family === "IPv4" && alias.address !== "127.0.0.1" && !alias.internal){  
+				return alias.address;  
+			}  
+		}  
+	} 
+};
 
 var studentLog = new Array();
 export const stuLog = (studentId,studentName,time,probability) => {
 	let ResProbability = probability.toString().substr(2,1);
-	console.log(ResProbability);
-	const url="http://192.168.52.126:3000/watching/cheatPic/";
+	let LocalIP = getLocalIP();
+	const url="http://"+ LocalIP +":3000/watching/cheatPic/";
 	studentLog.unshift({        //最新的會在第一筆
 		"studentId":studentId,
 		"studentName":studentName,
@@ -22,7 +34,7 @@ export const stuLog = (studentId,studentName,time,probability) => {
 };
 
 /**
- * Display list of all examples.
+ * Display list of all examples.s
  * @param req
  * @param res
  */

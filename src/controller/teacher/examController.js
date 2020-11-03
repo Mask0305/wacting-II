@@ -90,7 +90,6 @@ export const enterExam = async (req, res) => {
 	
 	let clientToken = req.headers.authorization;           //從header取token
 	jwt.verify(clientToken,"student_key",(err,payload) => {  //jwt解密
-		console.log(payload);
 		if(err){
 			let error = "unauthorized";
 			let message = "header沒有authorization或解析錯誤";
@@ -100,8 +99,6 @@ export const enterExam = async (req, res) => {
 		} else {
 			let teacherIP = req.body.teacherIP;
 			if(payload.studentName !="" && payload.studentId !="" && payload.studentIP !="" && teacherIP !=""){
-                
-				//console.log('Token:\n'+clientToken);
 			
 				if(DetailExamID===undefined){
 					res.status(400)
@@ -164,7 +161,6 @@ export const extendExam = async (req, res) => {
 
 				var old_end = DetailExamEndTime.substr(0,2) + DetailExamEndTime.substr(3,2);                    //取出時間部分轉化為數字進行比較
 				var new_end = examEndTime.substr(0,2) + examEndTime.substr(3,2);
-				console.log(old_end+"/"+new_end);
 				if(old_end >= new_end){ 
 					let error = "examTimeError";
 					let message = "考試時間錯誤";
@@ -217,7 +213,6 @@ export const closeExam = function(req,res){
 
 				let old_end = DetailExamEndTime.substr(0,2)+DetailExamEndTime.substr(3,2);                    //取出時間部分轉化為數字進行比較
 				let new_end = examEndTime.substr(0,2) + examEndTime.substr(3,2);
-				console.log(old_end+"/"+new_end);
 				if(old_end < new_end){ 
 					let error = "examTimeError";
 					let message = "考試時間錯誤";
