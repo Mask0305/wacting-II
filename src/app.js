@@ -22,8 +22,8 @@ export const app = express();
 /* cors */
 app.use(cors());  // 跨網域
 
-app.use(bodyparser.json({ limit: "50mb" }));
-app.use(bodyparser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }));
+app.use(bodyparser.json({limit: "50mb"}));
+app.use(bodyparser.urlencoded({limit: "50mb", extended: true, parameterLimit: 50000}));
 app.use(passport.initialize());
 
 /**
@@ -46,14 +46,14 @@ _.each(globalMiddlewares, (middleware) => {
 	app.use(middleware);
 });
 
-app.use("/" ,express.static(path.join(__dirname, "../dist/watching")));	//TODO 改那些path
+app.use("/", express.static(path.join(__dirname, "../dist/watching")));	//TODO 改那些path
 /**
  * Routers
  */
 app.disable("etag");	//禁用緩存，不會回304
 
 app.use("/watching/api/v1/", rootRouter);
-app.use("/watching/cheatPic/",express.static("cheatPic"));
+app.use("/watching/cheatPic/", express.static("cheatPic"));
 
 /* * * Server start * * */
 
@@ -82,7 +82,7 @@ app.set("port", port);
 /** dev */
 const dd = debug("monolithic:server");
 const server = http.createServer(app);
-server.listen(port,"0.0.0.0");
+server.listen(port, "0.0.0.0");
 
 
 /**

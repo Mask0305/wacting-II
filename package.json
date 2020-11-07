@@ -4,6 +4,7 @@
   "description": "起始專案",
   "main": "app.js",
   "scripts": {
+    "build": "babel src -d es5",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec npx babel-node ./src/app.js",
     "start02": "nodemon --exec npx babel-node ./src/app02.js",
@@ -45,6 +46,8 @@
     "tedious": "^9.0.1"
   },
   "devDependencies": {
+    "electron": "^10.1.5",
+    "electron-packager": "^15.1.0",
     "eslint": "^7.6.0"
   }
 }

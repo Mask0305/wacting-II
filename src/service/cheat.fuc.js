@@ -1,9 +1,9 @@
 import { post_cheatpic } from "../service/initiative_post";
-import { imgtobase } from "../service/base64_image";
+import { imgToBase } from "../service/base64_image";
 
 export const cheatfuc = (imgs,studentName,studentId,cheatTime,cheatProbability) => {
 
-	var base64str = [imgtobase(imgs[0]),imgtobase(imgs[1]),imgtobase(imgs[2])];
+	var base64str = [imgToBase(imgs[0]),imgToBase(imgs[1]),imgToBase(imgs[2])];
         
 	var request = {
 		"studentId": studentId,
