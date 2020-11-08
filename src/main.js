@@ -23,7 +23,7 @@ function createWindow() {
 	});
 
 	// and load the index.html of the app.
-	mainWindow.loadFile("../dist/watching/index.html");
+	mainWindow.loadFile("dist/watching/index.html");
 
 	// Open the DevTools.
 	// mainWindow.webContents.openDevTools();

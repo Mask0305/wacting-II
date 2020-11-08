@@ -2,7 +2,7 @@
   "name": "startup",
   "version": "1.0.0",
   "description": "起始專案",
-  "main": "app.js",
+  "main": "es5/main.js",
   "scripts": {
     "build": "babel src -d es5",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,8 @@
     "migrate": "npx sequelize db:migrate",
     "migrate-undo": "npx sequelize db:migrate:undo:all",
     "seed": "npx sequelize db:seed:all",
-    "eslint-fix": "npx eslint . --fix"
+    "eslint-fix": "npx eslint . --fix",
+    "package": "electron-packager . watching --platform=win32 --arch=x64"
   },
   "author": "Mask0305",
   "license": "ISC",
@@ -22,6 +23,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
     "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.11.0",
+    "@babel/runtime": "^7.12.5",
     "base64-to-image": "^1.0.2",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
@@ -47,7 +49,24 @@
   },
   "devDependencies": {
     "electron": "^10.1.5",
+    "electron-builder": "^22.9.1",
     "electron-packager": "^15.1.0",
     "eslint": "^7.6.0"
+  },
+  "build": {
+    "appId": "com.cilent.app.electronbuild",
+    "productName": "electron-build",
+    "directories": {
+      "output": "build"
+    },
+    "mac": {
+      "icon": "icons/Mushroom.ico"
+    },
+    "win": {
+      "icon": "icons/Mushroom.ico"
+    },
+    "linux": {
+      "icon": "icons/Mushroom.ico"
+    }
   }
 }
