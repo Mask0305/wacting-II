@@ -65,11 +65,11 @@ export const openExam = async (req, res) => {
 						message
 					});
 			}
-				// else if(false /* 考試時間錯誤 */){
-				// 	let error = "examTimeError";
-				// 	let message = "考試時間錯誤";
-				// 	res.status(409)
-				// 		.json({error:error,message:message});
+			// else if(false /* 考試時間錯誤 */){
+			// 	let error = "examTimeError";
+			// 	let message = "考試時間錯誤";
+			// 	res.status(409)
+			// 		.json({error:error,message:message});
 			// }
 			else {
 				let error = "valueIsNotSuitable";
@@ -211,27 +211,17 @@ export const closeExam = function (req, res) {
 				res.status(400)
 					.json({error: error, message: message});
 			} else {
-
-				let old_end = DetailExamEndTime.substr(0, 2) + DetailExamEndTime.substr(3, 2);                    //取出時間部分轉化為數字進行比較
-				let new_end = examEndTime.substr(0, 2) + examEndTime.substr(3, 2);
-				if (old_end < new_end) {
-					let error = "examTimeError";
-					let message = "考試時間錯誤";
-					res.status(400)
-						.json({error: error, message: message});
-				} else {
-					examdetal(examId, DetailExamStartTime, examEndTime);
-					let message = {
-						"examID": DetailExamID,
-						"examStartTime": DetailExamStartTime,
-						"examEndTime": DetailExamEndTime,
-						"examCount": DetailExamCount,
-						"message": "成功關閉考試"
-					};
-					res.status(201)
-						.json({message: message});
-
-				}
+			
+				examdetal(examId,DetailExamName, DetailExamStartTime, examEndTime,DetailExamCount);
+				let message = {
+					"examID": DetailExamID,
+					"examStartTime": DetailExamStartTime,
+					"examEndTime": DetailExamEndTime,
+					"examCount": DetailExamCount,
+					"message": "成功關閉考試"
+				};
+				res.status(201)
+					.json({message: message});
 			}
 		}
 	});
