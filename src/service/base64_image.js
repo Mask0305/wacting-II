@@ -22,7 +22,8 @@ export function imgToBase(img) {
 
 export function baseToImg(base64str, stid, time, i) {
 	// eslint-disable-next-line no-undef
-	let filePath = path.join(process.cwd(), "cheatPic");        //轉回圖片後存放位置
+	let filePath = path.join(__dirname, "..", "..", "cheatPic");        //轉回圖片後存放位置
+	console.log(filePath);
 	let fileName = time + "_" + stid + "_" + i + ".jpg";
 	let optionalObj = {"fileName": fileName, "type": "jpg"};    //fileName->命名圖片,type->格式
 

@@ -103,7 +103,7 @@ expressApp.use("/", express.static(path.join(__dirname, "../dist/watching")));	/
 expressApp.disable("etag");	//禁用緩存，不會回304
 
 expressApp.use("/watching/api/v1/", rootRouter);
-expressApp.use("/watching/cheatPic/", express.static("cheatPic"));
+expressApp.use("/watching/cheatPic/", express.static(path.join(__dirname, "..", "cheatPic")));
 
 /* * * Server start * * */
 

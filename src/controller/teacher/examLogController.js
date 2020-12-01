@@ -17,14 +17,14 @@ const getLocalIP = () => {
 
 var studentLog = new Array();
 export const stuLog = (studentId,studentName,time,probability) => {
-	let ResProbability = probability.toString().substr(2,1);
+	let ResProbability = Math.round(probability * 10000) / 100;
 	let LocalIP = getLocalIP();
 	const url="http://"+ LocalIP +":3000/watching/cheatPic/";
 	studentLog.unshift({        //最新的會在第一筆
 		"studentId":studentId,
 		"studentName":studentName,
 		"time":time,
-		"probability":ResProbability+"0%",
+		"probability": ResProbability + "%",
 		"cheatImages": [
 			url+time+"_"+studentId+"_"+0+".jpg",
 			url+time+"_"+studentId+"_"+1+".jpg",
